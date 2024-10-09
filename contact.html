@@ -4,26 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Default background color */
-        body {
-            background-color: black; /* Make the background black to avoid white flash */
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            height: 100vh; /* Ensure body takes full height */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* On page load, make the body visible */
-        body.loaded {
-            opacity: 1;
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            display: flex; /* Center elements vertically and horizontally */
+            justify-content: center; /* Horizontally center */
+            align-items: center; /* Vertically center */
         }
 
-        /* Background Video with Sound */
+        /* Background Video */
         .video-container {
             position: absolute;
             top: 0;
@@ -38,6 +35,9 @@
             object-fit: cover;
             width: 100%;
             height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
         /* Contact Section Positioned at the Bottom-Right Corner */
@@ -68,12 +68,25 @@
             top: 20px;
             left: 20px;
             padding: 10px 20px;
-            background-color: black; /* Set background to black */
-            color: white; /* Set font color to white */
+            background-color: rgb(0, 0, 0); /* Set background to black */
+            color: rgb(255, 255, 255); /* Set font color to white */
             border: none;
             cursor: pointer;
             font-size: 14px;
             z-index: 20;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            #google-forms h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #google-forms h2 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
@@ -81,7 +94,7 @@
 
     <!-- Background Video with Sound -->
     <div class="video-container">
-        <video autoplay loop id="background-video" muted>
+        <video autoplay loop id="background-video" preload="auto" muted="false">
             <source src="assets/Creepy_clown - Made with Clipchamp.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -118,11 +131,6 @@
                 window.onpopstate = function() {};  // Reset the back button functionality
             }, 40000);  // Disable for 40 seconds
         }
-
-        // Ensure the page fades in when loaded
-        window.addEventListener('load', function() {
-            document.body.classList.add('loaded');
-        });
 
         // Unmute video when the button is clicked
         document.getElementById('unmute-btn').addEventListener('click', function() {

@@ -151,7 +151,7 @@ nav a:hover {
     left: -100%;
     width: 300%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 0, 0.3);
     transition: all 0.6s ease-in-out; /* Smooth animation for button effect */
 }
 
@@ -235,134 +235,87 @@ nav a:hover {
     box-shadow: none; /* Remove shadow for a cleaner look */
 }
 
+/* Unmute Button */
+#unmute-btn {
+    position: absolute;
+    top: 20px;
+    left: -1500px;
+    padding: 10px 20px;
+    background-color: rgb(0, 0, 0); /* Set background to black */
+    color: rgb(255, 255, 255); /* Set font color to white */
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    z-index: 20;
+}
+
 /* Document Search Bar Styles */
 #gtkc-liqc {
     position: relative;
     text-align: center;
-    color: rgb(0, 0, 0);
+    color: rgb(31, 98, 0);
     padding: 50px;
     z-index: 10;
 }
 
+/* Transparent Square Background Box for Search Section */
 .search-background {
     display: inline-block;
     position: relative;
+    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
+    padding: 40px; /* Adjust padding for more space inside */
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    backdrop-filter: blur(5px); /* Optional: adds blur effect to background */
+    width: 300px; /* Set width for a square */
+    height: 300px; /* Set height for a square */
+    max-width: 90%; /* Ensure it's responsive */
+    margin: 0 auto; /* Center it horizontally */
+    text-align: center; /* Center the content inside */
 }
 
-.search-container {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    max-width: 600px; /* Max width for search bar */
+/* Adjusting the search bar inside the transparent box */
+.search-background h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: rgb(31, 98, 0); /* Keep header color consistent */
 }
 
+/* Search Bar Styles */
 #search-bar {
     width: 100%;
     padding: 12px;
     font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.8);
-    color: #333;
-    box-sizing: border-box;
-    margin-top: 20px;
-}
-
-#search-results {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    right: 0;
-    background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid #ccc;
     border-radius: 5px;
-    max-height: 200px;
-    overflow-y: auto;
-    display: none; /* Hidden by default */
-    z-index: 20;
+    color: #333;
+    transition: all 0.3s ease-in-out; /* Smooth transition for select input */
 }
 
-#search-results li {
-    padding: 10px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-#search-results li:hover {
-    background-color: #007BFF;
-    color: white;
-}
-
-#go-button {
+/* Search Button Styles */
+.search-background button {
     padding: 12px 20px;
     font-size: 16px;
     background-color: #007BFF;
+    color: white;
     border: none;
     border-radius: 5px;
-    color: white;
     cursor: pointer;
-    margin-top: 15px;
+    transition: all 0.3s ease-in-out;
     width: 100%;
-    max-width: 600px;
-    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    transform: scale(1); /* Initial scale */
 }
 
-#go-button:hover {
-    background-color: #00ae11;
+/* Search Button Hover Effect with Animation */
+.search-background button:hover {
+    background-color: #00b318;
+    transform: scale(1.1); /* Button grows slightly */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Adds shadow on hover */
 }
 
-.search-container button:active {
-    transform: translateY(2px); /* Slightly pressed effect on click */
-}
-
-
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-    #google-forms h2 {
-        font-size: 28px;
-    }
-
-    .forms-background {
-        width: 80%;
-    }
-
-    .forms-container select {
-        padding: 15px;  /* Increase padding for better touch experience */
-    }
-
-    .forms-container button {
-        padding: 14px;
-    }
-
-    /* Adjusting the login section for mobile */
-    #login-section {
-        width: 80%;
-    }
-}
-
-@media (max-width: 480px) {
-    #google-forms h2 {
-        font-size: 24px;
-    }
-
-    .forms-background {
-        width: 90%;
-    }
-
-    .forms-container select {
-        padding: 18px;  /* Larger padding for smaller screens */
-    }
-
-    .forms-container button {
-        padding: 16px;  /* Larger padding for smaller screens */
-    }
-
-    /* Adjusting the login section for smaller mobile screens */
-    #login-section {
-        width: 90%;
-    }
+/* Optional styling for a search button inside the box */
+.search-background button:active {
+    transform: scale(1); /* Reset scale when clicked */
 }

@@ -48,3 +48,53 @@ loginButton.addEventListener('click', function() {
     loginButton.classList.remove('moved'); // Prevents movement once clicked
 });
 
+// --- New Search Bar Features ---
+// Array of documents with name and link
+const documents = [
+    { name: 'Team SWAT Google Sheet', link: 'https://docs.google.com/spreadsheets/d/1example123' },
+    { name: 'Company Policy Google Doc', link: 'https://docs.google.com/document/d/1example456' },
+    { name: 'Project Overview Google Site', link: 'https://sites.google.com/view/example-site' },
+    { name: 'Financial Report Google Sheet', link: 'https://docs.google.com/spreadsheets/d/1example789' },
+    { name: 'HR Guidelines Google Doc', link: 'https://docs.google.com/document/d/1example101' }
+];
+
+let selectedDocumentLink = '';
+
+// Function to handle document search and show suggestions
+function searchDocuments() {
+    const query = document.getElementById('search-bar').value.toLowerCase();
+    const searchResults = document.getElementById('search-results');
+    searchResults.innerHTML = '';  // Clear previous results
+    searchResults.style.display = 'none';  // Hide results if no query
+
+    if (query.length > 0) {
+        searchResults.style.display = 'block';  // Show results if query is not empty
+
+        documents.forEach(doc => {
+            if (doc.name.toLowerCase().includes(query)) {
+                const li = document.createElement('li');
+                li.textContent = doc.name;
+                li.onclick = () => {
+                    selectedDocumentLink = doc.link;
+                    document.getElementById('search-bar').value = doc.name;
+                    searchResults.innerHTML = ''; // Clear results after selection
+                    searchResults.style.display = 'none';  // Hide suggestions
+                };
+                searchResults.appendChild(li);
+            }
+        });
+    }
+}
+
+// Function to open selected document link
+function openDocument() {
+    if (selectedDocumentLink) {
+        window.open(selectedDocumentLink, '_blank');
+    }
+}
+
+// Event listener to handle input on the search bar
+document.getElementById('search-bar').addEventListener('input', searchDocuments);
+
+// Event listener to open the document when the "Go" button is clicked
+document.getElementById('go-button').addEventListener('click', openDocument);
