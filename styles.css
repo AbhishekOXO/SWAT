@@ -1,0 +1,296 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Background Video */
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+#background-video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Navigation Bar */
+nav {
+    position: fixed;
+    top: 20px;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+}
+
+nav ul {
+    list-style: none;
+    display: inline-flex;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 30px;
+    transition: all 0.5s ease-in-out;  /* Increased duration for smoother transition */
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);  /* Increased shadow for better hover effect */
+    transform: translateY(-5px) scale(1.05); /* Added scale for smoother hover effect */
+}
+
+/* Home Section */
+#home {
+    text-align: center;
+    padding: 100px 0;
+    color: white;
+}
+
+/* Google Forms Page Styles */
+#google-forms {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    text-align: center;
+    color: white;
+    z-index: 10; /* Ensure it's above the video */
+    position: relative;
+}
+
+#google-forms h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    transition: all 0.6s ease-in-out;  /* Smooth transition for heading */
+}
+
+/* Adding a semi-transparent background box with depth */
+.forms-background {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black with 70% opacity */
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); /* Deeper shadow for better depth */
+    width: 350px;
+    transition: all 0.5s ease-in-out; /* Smooth transition on resize */
+}
+
+/* Form and dropdowns container */
+.forms-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: transparent; /* Inside the background box, transparent container */
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%; /* Full width of the background box */
+}
+
+/* Dropdown styles */
+.forms-container select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+    transition: all 0.3s ease-in-out; /* Smooth transition for select input */
+}
+
+.forms-container select:hover {
+    border-color: #007BFF;  /* Hover effect for select */
+}
+
+/* Button styles with animation */
+.forms-container button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: all 0.4s ease-in-out; /* Smooth transition for button */
+    position: relative;
+    overflow: hidden;
+}
+
+.forms-container button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: all 0.6s ease-in-out; /* Smooth animation for button effect */
+}
+
+.forms-container button:hover::before {
+    left: 100%;
+}
+
+.forms-container button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px) scale(1.05); /* Added scale for smooth hover effect */
+}
+
+/* Login Section Styles */
+#login-section {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    right: 1.5%; /* Move to the right side of the screen */
+    transform: translateY(-50%); /* Maintain vertical centering */
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+#login-section h2 {
+    margin-bottom: 20px;
+    font-size: 20px; /* Increase font size */
+    font-weight: 700; /* Make the font bold */
+    letter-spacing: 1px; /* Add some spacing between letters */
+    color: #f1f1f1; /* Slightly lighter text color for contrast */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6); /* Add subtle shadow */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Professional modern font */
+    text-transform: uppercase; /* Make the text all uppercase */
+}
+
+#login-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#login-section input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#login-section button {
+    padding: 6px 12px; /* Reduced padding for a smaller button */
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px; /* Keep the font size the same */
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    width: 105px; /* Make the width fit the content */
+    height: auto; /* Ensure the height adjusts to content */
+    align-self: flex-end; /* Align the button to the right */
+}
+
+/* Hover animation for login button */
+#login-section button:hover {
+    background-color: #218838; /* Green color on hover */
+    transform: translateX(0); /* Default position */
+    box-shadow: none; /* Remove shadow for a cleaner look */
+}
+
+/* Prevent hover from moving the button inappropriately */
+#login-section button:active {
+    transform: translateX(0); /* Ensure no movement on click */
+}
+
+/* When the login form is filled, the button will be moved */
+#login-section button.moved:hover {
+    transform: translateX(-1000px); /* Moves the button far to the left */
+    box-shadow: none; /* Remove shadow for a cleaner look */
+}
+
+
+/* Keyframes for moving the login button after being clicked */
+@keyframes moveButton {
+    0% {
+        top: 50%;
+        left: 50%;
+    }
+    50% {
+        top: 20%;
+        left: 80%;
+    }
+    100% {
+        top: 80%;
+        left: 10%;
+    }
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    #google-forms h2 {
+        font-size: 28px;
+    }
+
+    .forms-background {
+        width: 80%;
+    }
+
+    .forms-container select {
+        padding: 15px;  /* Increase padding for better touch experience */
+    }
+
+    .forms-container button {
+        padding: 14px;
+    }
+
+    /* Adjusting the login section for mobile */
+    #login-section {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    #google-forms h2 {
+        font-size: 24px;
+    }
+
+    .forms-background {
+        width: 90%;
+    }
+
+    .forms-container select {
+        padding: 18px;  /* Larger padding for smaller screens */
+    }
+
+    .forms-container button {
+        padding: 16px;  /* Larger padding for smaller screens */
+    }
+
+    /* Adjusting the login section for smaller mobile screens */
+    #login-section {
+        width: 90%;
+    }
+}
