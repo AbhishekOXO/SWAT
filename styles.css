@@ -251,24 +251,26 @@ nav a:hover {
 
 /* Document Search Bar Styles */
 #gtkc-liqc {
-    position: relative;
+    position: absolute;
     text-align: center;
-    color: rgb(31, 98, 0);
+    color: rgb(255, 255, 255);
     padding: 50px;
     z-index: 10;
+    margin-bottom: -30px;
+
 }
 
 /* Transparent Square Background Box for Search Section */
 .search-background {
     display: inline-block;
     position: relative;
-    background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
+    background-color: rgba(26, 26, 26, 0.6); /* Semi-transparent white */
     padding: 40px; /* Adjust padding for more space inside */
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
     backdrop-filter: blur(5px); /* Optional: adds blur effect to background */
-    width: 300px; /* Set width for a square */
-    height: 300px; /* Set height for a square */
+    width: 400px; /* Set width for a square */
+    height: 400px; /* Set height for a square */
     max-width: 90%; /* Ensure it's responsive */
     margin: 0 auto; /* Center it horizontally */
     text-align: center; /* Center the content inside */
@@ -283,6 +285,7 @@ nav a:hover {
 
 /* Search Bar Styles */
 #search-bar {
+    position: relative;
     width: 100%;
     padding: 12px;
     font-size: 16px;
@@ -290,6 +293,7 @@ nav a:hover {
     border: 1px solid #ccc;
     border-radius: 5px;
     color: #333;
+    margin-bottom: 50px;
     transition: all 0.3s ease-in-out; /* Smooth transition for select input */
 }
 
@@ -304,14 +308,14 @@ nav a:hover {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     width: 100%;
-    margin-top: 20px;
-    transform: scale(1); /* Initial scale */
+    margin-top: 50px;
+    transform: scale(0.85); /* Initial scale */
 }
 
 /* Search Button Hover Effect with Animation */
 .search-background button:hover {
     background-color: #00b318;
-    transform: scale(1.1); /* Button grows slightly */
+    transform: scale(1); /* Button grows slightly */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Adds shadow on hover */
 }
 
