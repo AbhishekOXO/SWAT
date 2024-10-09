@@ -61,17 +61,34 @@
             margin: 5px 0 0 0;
             font-size: 10px; /* Smaller font size for paragraph */
         }
+
+        /* Unmute Button */
+        #unmute-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background-color: black; /* Set background to black */
+            color: white; /* Set font color to white */
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 20;
+        }
     </style>
 </head>
 <body>
 
     <!-- Background Video with Sound -->
     <div class="video-container">
-        <video autoplay loop id="background-video">
+        <video autoplay loop id="background-video" muted>
             <source src="assets/Creepy_clown - Made with Clipchamp.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
+
+    <!-- Unmute Button -->
+    <button id="unmute-btn">Unmute</button>
 
     <!-- Contact Page Content Positioned at the Bottom-Right -->
     <section id="contact">
@@ -105,7 +122,13 @@
         // Ensure the page fades in when loaded
         window.addEventListener('load', function() {
             document.body.classList.add('loaded');
-            
+        });
+
+        // Unmute video when the button is clicked
+        document.getElementById('unmute-btn').addEventListener('click', function() {
+            var video = document.getElementById('background-video');
+            video.muted = false;
+            this.style.display = 'none'; // Hide the button after unmuting
         });
     </script>
 
