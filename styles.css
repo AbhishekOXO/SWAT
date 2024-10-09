@@ -134,7 +134,7 @@ nav a:hover {
     width: 100%;
     padding: 12px;
     font-size: 16px;
-    background-color: #007BFF;
+    background-color: #01119e;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -151,7 +151,7 @@ nav a:hover {
     left: -100%;
     width: 300%;
     height: 100%;
-    background-color: rgba(255, 255, 0, 0.3);
+    background-color: rgba(2, 57, 117, 0.728);
     transition: all 0.6s ease-in-out; /* Smooth animation for button effect */
 }
 
@@ -160,7 +160,7 @@ nav a:hover {
 }
 
 .forms-container button:hover {
-    background-color: #0056b3;
+    background-color: #22c502;
     transform: translateY(-3px) scale(1.05); /* Added scale for smooth hover effect */
 }
 
