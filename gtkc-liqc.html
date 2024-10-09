@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Search</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Background Video -->
+    <div class="video-container">
+        <video autoplay muted loop id="background-video">
+            <source id="background-video-source" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Navigation Bar with Home Button -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <!-- Document Search Bar -->
+    <section id="gtkc-liqc">
+        <h2>Search Bar</h2>
+
+        <!-- Search Bar -->
+        <div class="search-background">
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search for a document..." oninput="searchDocuments()" />
+                <ul id="search-results"></ul>
+                <button id="go-button" onclick="openDocument()">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const documents = [
+            { name: 'Team SWAT Google Sheet', link: 'https://docs.google.com/spreadsheets/d/1example123' },
+            { name: 'Company Policy Google Doc', link: 'https://docs.google.com/document/d/1example456' },
+            { name: 'Project Overview Google Site', link: 'https://sites.google.com/view/example-site' },
+            { name: 'Financial Report Google Sheet', link: 'https://docs.google.com/spreadsheets/d/1example789' },
+            { name: 'HR Guidelines Google Doc', link: 'https://docs.google.com/document/d/1example101' }
+        ];
+
+        let selectedDocumentLink = '';
+
+        function searchDocuments() {
+            const query = document.getElementById('search-bar').value.toLowerCase();
+            const searchResults = document.getElementById('search-results');
+            searchResults.innerHTML = '';
+
+            if (query.length === 0) {
+                return; // Do nothing if search input is empty
+            }
+
+            documents.forEach(doc => {
+                if (doc.name.toLowerCase().includes(query)) {
+                    const li = document.createElement('li');
+                    li.textContent = doc.name;
+                    li.onclick = () => {
+                        selectedDocumentLink = doc.link;
+                        document.getElementById('search-bar').value = doc.name;
+                        searchResults.innerHTML = ''; // Clear results after selection
+                    };
+                    searchResults.appendChild(li);
+                }
+            });
+
+            if (searchResults.innerHTML === '') {
+                searchResults.style.display = 'none'; // Hide results if no match
+            } else {
+                searchResults.style.display = 'block'; // Show results if there are matches
+            }
+        }
+
+        function openDocument() {
+            if (selectedDocumentLink) {
+                window.open(`${selectedDocumentLink}`, '_blank');
+            }
+        }
+
+        // Array of video URLs
+        const videoUrls = [
+            'assets/background-video.mp4',
+            'assets/background-video2.mp4',
+            'assets/background-video3.mp4',
+            'assets/background-video4.mp4'
+        ];
+
+        // Function to randomly select a video
+        function setRandomBackgroundVideo() {
+            const randomIndex = Math.floor(Math.random() * videoUrls.length);
+            const videoElement = document.getElementById('background-video-source');
+            videoElement.src = videoUrls[randomIndex];
+            document.getElementById('background-video').load(); // Reload the video with the new source
+        }
+
+        // Set a random background video on page load
+        window.addEventListener('load', function() {
+            setRandomBackgroundVideo();
+            document.body.classList.add('fade-in');
+        });
+    </script>
+
+</body>
+</html>
