@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Form</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styling for the iframe container */
+        #form-container {
+            width: 100%;
+            height: 600px;
+            border: 2px solid #ccc;
+        }
+
+        /* Styling for the countdown timer */
+        #countdown {
+            font-size: 24px;
+            color: white;
+            position: fixed;
+            top: 5.5px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Styling for the "All the Best!" heading */
+        #google-forms h2 {
+            font-size: 36px; /* Increased font size */
+            font-weight: bold; /* Make it bold */
+            color: white; /* Text color */
+            position: relative; /* Allow manual adjustment */
+            top: 8.5px; /* Adjust the top value to move it down */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Add a subtle shadow */
+            text-align: center; /* Center the heading */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Video -->
+    <div class="video-container">
+        <video autoplay muted loop id="background-video">
+            <source id="background-video-source" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Navigation Bar with Home Button (removed on form-page.html) -->
+    <nav>
+        <ul>
+            <!-- Removed the Home button for form-page.html -->
+        </ul>
+    </nav>
+
+    <section id="google-forms">
+        <h2>All the Best!</h2>
+
+        <!-- Container for the form to be displayed -->
+        <div id="form-container">
+            <iframe id="formFrame" width="100%" height="100%" style="border:none;"></iframe>
+        </div>
+    </section>
+
+    <!-- Countdown Timer Display -->
+    <div id="countdown">Time Left: 20:00</div>
+
+    <script>
+        // Array of video URLs
+        const videoUrls = [
+            'assets/background-video.mp4',
+            'assets/background-video2.mp4',
+            'assets/background-video3.mp4',
+            'assets/background-video4.mp4'
+        ];
+
+        // Function to randomly select a video
+        function setRandomBackgroundVideo() {
+            const randomIndex = Math.floor(Math.random() * videoUrls.length);
+            const videoElement = document.getElementById('background-video-source');
+            videoElement.src = videoUrls[randomIndex];
+            document.getElementById('background-video').load(); // Reload the video with the new source
+        }
+
+        // Function to get the query parameter from the URL
+        function getQueryParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('formLink');
+        }
+
+        // Load the selected form in the iframe
+        function loadForm() {
+            const formLink = getQueryParams();
+            if (formLink) {
+                document.getElementById('formFrame').src = decodeURIComponent(formLink);
+            }
+        }
+
+        // Countdown Timer Function
+        function startCountdown() {
+            let timeLeft = 1200; // 20 minutes in seconds
+
+            // Update the countdown every second
+            const countdownElement = document.getElementById('countdown');
+            const timer = setInterval(function() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+
+                countdownElement.textContent = `Time Left: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    countdownElement.textContent = "Time's up!";
+                    autoSubmitForm(); // Trigger auto-submit once time is up
+                }
+
+                timeLeft--;
+            }, 1000);
+        }
+
+        // Auto-submit the form when the countdown reaches 0
+        function autoSubmitForm() {
+            const iframe = document.getElementById('formFrame');
+            const iframeDocument = iframe.contentWindow.document;
+
+            // Ensure the form is loaded in the iframe
+            const form = iframeDocument.querySelector('form');
+            if (form) {
+                form.submit(); // Trigger form submission
+            }
+        }
+
+        // Load the form and start the countdown on page load
+        window.addEventListener('load', function() {
+            setRandomBackgroundVideo(); // Set a random background video
+            loadForm();
+            startCountdown();
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Default background color */
+        body {
+            background-color: black; /* Make the background black to avoid white flash */
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            height: 100vh; /* Ensure body takes full height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* On page load, make the body visible */
+        body.loaded {
+            opacity: 1;
+        }
+
+        /* Background Video with Sound */
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        #background-video {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Contact Section Positioned at the Bottom-Right Corner */
+        #contact {
+            position: absolute;
+            bottom: 10px; /* Position 10px from the bottom */
+            right: 10px;  /* Position 10px from the right */
+            color: white;
+            text-align: right; /* Align the text to the right */
+            font-size: 10px; /* Even smaller font size */
+            opacity: 0.5; /* 50% opacity */
+            z-index: 10;  /* Ensure it is above the video */
+        }
+
+        #contact h1 {
+            margin: 0;
+            font-size: 12px; /* Smaller font size for header */
+        }
+
+        #contact p {
+            margin: 5px 0 0 0;
+            font-size: 10px; /* Smaller font size for paragraph */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Video with Sound -->
+    <div class="video-container">
+        <video autoplay loop id="background-video" muted>
+            <source src="assets/Creepy_clown - Made with Clipchamp.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Contact Page Content Positioned at the Bottom-Right -->
+    <section id="contact">
+        <h1>Contact Us</h1>
+        <p>Feel free to reach out to us for any inquiries.</p>
+    </section>
+
+    <script>
+        // Disable browser navigation for 40 seconds
+        if (window.location.pathname.includes('contact.html')) {
+            // Disable the back button by pushing a new state
+            history.pushState(null, null, location.href);
+            window.onpopstate = function() {
+                history.pushState(null, null, location.href);  // Prevent back navigation
+            };
+
+            // Disable reload by using window.onbeforeunload
+            window.onbeforeunload = function() {
+                return "You cannot reload or navigate away from this page for 40 seconds.";
+            };
+
+            // After 40 seconds, restore normal behavior
+            setTimeout(function() {
+                // Allow navigation and reload after 40 seconds
+                window.onbeforeunload = null;  // Allow reload
+                history.pushState(null, null, location.href);  // Allow back navigation
+                window.onpopstate = function() {};  // Reset the back button functionality
+            }, 40000);  // Disable for 40 seconds
+        }
+
+        // Ensure the page fades in when loaded
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+            
+        });
+    </script>
+
+</body>
+</html>

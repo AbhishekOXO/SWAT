@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Forms</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Background Video -->
+    <div class="video-container">
+        <video autoplay muted loop id="background-video">
+            <source id="background-video-source" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Navigation Bar with Home Button -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <!-- Google Forms Dropdowns -->
+    <section id="google-forms">
+        <h2>Select Your Form</h2>
+
+        <!-- Category Dropdown -->
+        <div class="forms-background">
+            <div class="forms-container">
+                <select id="category-dropdown" onchange="updateFormLinks()">
+                    <option value="">Select Category</option>
+                    <option value="english">English Comprehension Test</option>
+                    <option value="knowledge">Knowledge Test</option>
+                    <option value="other">Other Forms</option>
+                </select>
+
+                <!-- Form Links Dropdown -->
+                <select id="form-links-dropdown">
+                    <option value="">Select Form</option>
+                </select>
+
+                <button id="go-button" onclick="openForm()">Go</button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const forms = {
+            english: [
+                {name: 'Set 1', link: 'https://forms.gle/Hs8321pjBJnyjVAR6'},
+                {name: 'Form 2', link: 'https://forms.gle/form2link'}
+            ],
+            knowledge: [
+                {name: 'Form 3', link: 'https://forms.gle/form3link'},
+                {name: 'Form 4', link: 'https://forms.gle/form4link'}
+            ],
+            other: [
+                {name: 'Form 5', link: 'https://forms.gle/form5link'},
+                {name: 'Form 6', link: 'https://forms.gle/form6link'}
+            ]
+        };
+
+        // Update the form links dropdown based on the selected category
+        function updateFormLinks() {
+            const category = document.getElementById('category-dropdown').value;
+            const formLinksDropdown = document.getElementById('form-links-dropdown');
+            formLinksDropdown.innerHTML = '<option value="">Select Form</option>';
+
+            if (category) {
+                forms[category].forEach(form => {
+                    const option = document.createElement('option');
+                    option.value = form.link;
+                    option.textContent = form.name;
+                    formLinksDropdown.appendChild(option);
+                });
+            }
+        }
+
+        // Redirect to the new page with the selected form's link in a new tab
+        function openForm() {
+            const formLink = document.getElementById('form-links-dropdown').value;
+            if (formLink) {
+                // Open the form-page.html in a new tab and pass the form link as a query parameter
+                window.open(`form-page.html?formLink=${encodeURIComponent(formLink)}`, '_blank');
+            }
+        }
+
+        // Array of video URLs
+        const videoUrls = [
+            'assets/background-video.mp4',
+            'assets/background-video2.mp4',
+            'assets/background-video3.mp4',
+            'assets/background-video4.mp4'
+        ];
+
+        // Function to randomly select a video
+        function setRandomBackgroundVideo() {
+            const randomIndex = Math.floor(Math.random() * videoUrls.length);
+            const videoElement = document.getElementById('background-video-source');
+            videoElement.src = videoUrls[randomIndex];
+            document.getElementById('background-video').load(); // Reload the video with the new source
+        }
+
+        // Set a random background video on page load
+        window.addEventListener('load', function() {
+            setRandomBackgroundVideo();
+            document.body.classList.add('fade-in');
+        });
+    </script>
+
+</body>
+</html>

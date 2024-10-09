@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Website with Video Background</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Background Video -->
+    <div class="video-container">
+        <video autoplay muted loop id="background-video">
+            <source id="background-video-source" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="https://lookerstudio.google.com/u/0/reporting/287aff01-df2f-4ca4-bb9e-ccf556fec1d9/page/p_pl4om5a7dd" target="_blank" id="swat-dashboard">SWAT Dashboard</a></li>
+            <li><a href="google-forms.html" id="google-form">Google Form</a></li>
+            <li><a href="contact.html" id="contact">Don't Click</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content Section -->
+    <section id="home">
+        <h1>Welcome to SWAT</h1>
+        <p>Precision in Every Move, Driving Results Through Teamwork and Expertise.</p>
+    </section>
+
+    <!-- Login Section -->
+    <section id="login-section">
+        <div class="login-container">
+            <h2>Login to Check STACK Ranking</h2>
+            <form action="#">
+                <input type="email" id="email" placeholder="Enter your Imerit email" required>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <button type="submit" id="login-button">Login</button>
+            </form>
+        </div>
+    </section>
+
+    <script src="scripts.js"></script>
+
+    <script>
+        // Array of video URLs
+        const videoUrls = [
+            'assets/background-video.mp4',
+            'assets/background-video2.mp4',
+            'assets/background-video3.mp4',
+            'assets/background-video4.mp4'
+        ];
+
+        // Function to randomly select a video
+        function setRandomBackgroundVideo() {
+            const randomIndex = Math.floor(Math.random() * videoUrls.length);
+            const videoElement = document.getElementById('background-video-source');
+            videoElement.src = videoUrls[randomIndex];
+            document.getElementById('background-video').load(); // Reload the video with the new source
+        }
+
+        // Set a random background video on page load
+        window.addEventListener('load', function() {
+            setRandomBackgroundVideo();
+        });
+    </script>
+
+</body>
+</html>
